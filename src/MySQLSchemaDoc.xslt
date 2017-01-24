@@ -18,7 +18,7 @@
                     <nav id="left_navigation">
                         <h1>テーブル定義 (<xsl:value-of select="@name"/>)</h1>
                         <div class="nav_filter_block">
-                            filter:<input type="url" id="filter_table_name" name="filter_table_name" style="ime-mode: disabled;" />
+                            <span>Filter:</span><input type="url" id="filter_table_name" name="filter_table_name" style="ime-mode: disabled;" placeholder="正規表現も対応" />
                             <button type="button" id="filter_clear">×</button>
                         </div>
                         <div class="nav_list_block">
@@ -35,7 +35,7 @@
                     </nav>
 
                     <div id="content">
-                        <div class="init_table_name">
+                        <div class="each_table_structure">
                             <span>◆</span>更新方法
                             <pre>
                                 mysqldump --no-data --xml -u {user_name} -p -h {host_name} {database_name} > mysqldump_create.xml
