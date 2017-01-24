@@ -4,37 +4,49 @@
 	/**
 	 * メニューリストの表示を管理するクラス
 	 */
-	var menuList = new function(){
+	let menuList = new function(){
 		let prev_filter_text = "";
 
 		/**
 		 * テーブル一覧のリストをフィルタ
+		 * 
 		 * @param filter_text
+		 * @returns {Array} 一覧に表示している項目の配列
 		 */
 		this.filter = function (filter_text) {
 			if (prev_filter_text === filter_text) {
-				return;
+				return [];
 			}
-
 			prev_filter_text = filter_text;
 
+			let displayed_items = [];
 			$('#left_navigation').find('li').each(function(){
 				let target_table_name = $(this).children('.nav_link').data('targetid');
 
-				let isMatched = target_table_name.match(new RegExp(filter_text, "i"));
+				let isMatched = true;
+				for (let filter of filter_text.split(' ')) {
+					if ( ! target_table_name.match(new RegExp(filter, "i"))) {
+						isMatched = false;
+						break;
+					}
+				}
+
 				if (isMatched) {
 					$(this).show();
+					displayed_items.push($(this));
 				} else {
 					$(this).hide();
 				}
 			});
+
+			return displayed_items;
 		};
 	}();
 
 	/**
 	 * テーブル絞り込みの入力枠用の処理
 	 */
-	var inputFilter = new function() {
+	let inputFilter = new function() {
 		// 非ascii文字判定の正規表現
 		const noSbcRegex = /[^\x20-\x7E]+/g;
 
@@ -43,7 +55,7 @@
 			'あ':'a', 'ｂ':'b', 'ｃ':'c', 'ｄ':'d', 'え':'e', 'ｆ':'f', 'ｇ':'g', 'ｈ':'h',
 			'い':'i', 'ｊ':'j', 'ｋ':'k', 'ｌ':'l', 'ｍ':'m', 'ｎ':'n', 'お':'o',
 			'ｐ':'p', 'ｑ':'q', 'ｒ':'r', 'ｓ':'s','ｔ':'t', 'う':'u', 'ｖ':'v', 'ｗ':'w', 'ｘ':'x', 'ｙ':'y', 'ｚ':'z',
-			'＿':'_', '＄':'$'
+			'＿':'_', '＄':'$', '　':' '
 		};
 
 		/**
@@ -76,12 +88,21 @@
 
 			return filter_text;
 		};
+		/**
+		 * 表示中の項目数を設定する
+		 * @param count
+		 */
+		this.setDisplayedItemsCount = function (count) {
+			$('#filtered_item_count').text(count + '件');
+		}
 	}();
 
 	/**
 	 * jQuery ready
 	 */
 	$(function(){
+		inputFilter.setDisplayedItemsCount($('.nav_link').length);
+
 		$(document).on('click', '.nav_link', function(){
 			$('.each_table_structure').hide();
 			$('#'+$(this).data('targetid')).show();
@@ -106,8 +127,25 @@
 
 			//setTimeoutを挟まないと、$(this).val()の値がこのタイミングではまだ変わっていない。
 			setTimeout(function($target){
-				menuList.filter(inputFilter.convertMultiInput($target));
+				let displayed_items = menuList.filter(inputFilter.convertMultiInput($target));
+				let displayed_count = displayed_items.length;
+
+				//絞り込みの結果、１件ならばその項目を自動で選択する
+				if (displayed_count === 1) {
+					displayed_items[0].find('.nav_link').trigger('click');
+				}
+
+				inputFilter.setDisplayedItemsCount(displayed_count);
 			}, 1, $(this));
+		});
+
+		$(document).tooltip({
+			position: { my: "center bottom", at: "center top"},
+			show: { effect: "blind", duration: 100 },
+			hide: { effect: "blind", duration: 100 },
+			close: function( event, ui ) {
+				$('div.ui-helper-hidden-accessible').empty();
+			}
 		});
 	});
 })();

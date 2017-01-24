@@ -1,12 +1,3 @@
-
-header {
-	text-align: center;
-}
-footer {
-	text-align: center;
-	padding: 0.5em;
-}
-
 /** 表示対象テーブルの選択ナビゲーション */
 nav {
 	position: fixed;
@@ -21,6 +12,16 @@ nav {
 	border: 1px solid #d9d9d9;
 	border-radius: 6px;
 }
+
+/* ------------------------------ */
+
+#filtered_item_count {
+	margin-left: 8px;
+	font-weight: bold;
+	color: red;
+}
+
+/* ------------------------------ */
 nav div.nav_list_block {
 	margin-top: 20px;
 	height: 82%;
@@ -51,6 +52,8 @@ nav ul a:hover {
 nav ul a.selected {
 	background-color: #f7f7cc;
 }
+
+/* ------------------------------ */
 
 /** 定義書本体 */
 div#content {

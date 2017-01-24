@@ -7,19 +7,21 @@
             <head>
                 <meta charset="utf-8"/>
                 <title>テーブル定義書 - <xsl:value-of select="@name"/></title>
-                <script src="https://unpkg.com/jquery@3.1.0/dist/jquery.min.js" />
+                <link type="text/css" rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
                 <link type="text/css" rel="stylesheet" href="MySQLSchemaDoc.css" />
+                <script src="http://code.jquery.com/jquery-3.1.1.min.js" />
+                <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous" />
                 <script src="MySQLSchemaDoc.js" />
             </head>
             <body>
-                <header>
-                </header>
                 <div class="container">
                     <nav id="left_navigation">
                         <h1>テーブル定義 (<xsl:value-of select="@name"/>)</h1>
                         <div class="nav_filter_block">
-                            <span>Filter:</span><input type="url" id="filter_table_name" name="filter_table_name" style="ime-mode: disabled;" placeholder="正規表現も対応" />
+                            <span>Filter:</span><input type="url" id="filter_table_name" name="filter_table_name" style="ime-mode: disabled;" 
+                                                       placeholder="テーブル名で絞り込み" title="・正規表現OK・スペース区切りでAND絞り込み" />
                             <button type="button" id="filter_clear">×</button>
+                            <span id="filtered_item_count"></span>
                         </div>
                         <div class="nav_list_block">
                             <ul>
@@ -45,14 +47,12 @@
                         <xsl:apply-templates select="table_structure"/>
                     </div>
                 </div>
-                <footer class="text-center">
-                </footer>
             </body>
         </html>
     </xsl:template>
 
     <xsl:template match="table_structure">
-        <section id="{@name}" class="resource init_table_name" style="display: none;">
+        <section id="{@name}" class="resource each_table_structure" style="display: none;">
             <table class="table table-bordered htable my-table-spec">
                 <tbody>
                     <tr class="active">
