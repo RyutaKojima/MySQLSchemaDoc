@@ -101,8 +101,6 @@
 	 * jQuery ready
 	 */
 	$(function(){
-		inputFilter.setDisplayedItemsCount($('.nav_link').length);
-
 		$(document).on('click', '.nav_link', function(){
 			$('.each_table_structure').hide();
 			$('#'+$(this).data('targetid')).show();
@@ -148,5 +146,9 @@
 				$('div.ui-helper-hidden-accessible').empty();
 			}
 		});
+
+		// chrome, firefoxの再起動、firefoxのリロード時などフォーム情報が残った状態でページが開く状況でも
+		// 正常動作させるために、トリガー起動
+		$('#filter_table_name').trigger('keydown');
 	});
 })();
