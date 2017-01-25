@@ -11,11 +11,11 @@
 		 * テーブル一覧のリストをフィルタ
 		 * 
 		 * @param filter_text
-		 * @returns {Array} 一覧に表示している項目の配列
+		 * @returns {null|Array} 一覧に表示している項目の配列。前回と変更がない場合はnull
 		 */
 		this.filter = function (filter_text) {
 			if (prev_filter_text === filter_text) {
-				return [];
+				return null;
 			}
 			prev_filter_text = filter_text;
 
@@ -128,14 +128,15 @@
 			//setTimeoutを挟まないと、$(this).val()の値がこのタイミングではまだ変わっていない。
 			setTimeout(function($target){
 				let displayed_items = menuList.filter(inputFilter.convertMultiInput($target));
-				let displayed_count = displayed_items.length;
+				if (displayed_items !== null) {
+					let displayed_count = displayed_items.length;
+					inputFilter.setDisplayedItemsCount(displayed_count);
 
-				//絞り込みの結果、１件ならばその項目を自動で選択する
-				if (displayed_count === 1) {
-					displayed_items[0].find('.nav_link').trigger('click');
+					//絞り込みの結果、１件ならばその項目を自動で選択する
+					if (displayed_count === 1) {
+						displayed_items[0].find('.nav_link').trigger('click');
+					}
 				}
-
-				inputFilter.setDisplayedItemsCount(displayed_count);
 			}, 1, $(this));
 		});
 
