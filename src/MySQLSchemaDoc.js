@@ -20,8 +20,8 @@
 			prev_filter_text = filter_text;
 
 			let displayed_items = [];
-			$('#left_navigation').find('li').each(function(){
-				let target_table_name = $(this).children('.nav_link').data('targetid');
+			$('#left_navigation').find('li.nav_link').each(function(){
+				let target_table_name = $(this).data('targetid');
 
 				let isMatched = true;
 				for (let filter of filter_text.split(' ')) {
@@ -107,8 +107,6 @@
 
 			$('.selected').removeClass('selected');
 			$(this).addClass('selected');
-
-			return false;
 		});
 
 		$(document).on('click', '#filter_clear', function(){
@@ -139,7 +137,7 @@
 		});
 
 		$(document).tooltip({
-			position: { my: "center bottom", at: "center top"},
+			position: { my: "left center", at: "right center"},
 			show: { effect: "blind", duration: 100 },
 			hide: { effect: "blind", duration: 100 },
 			close: function( event, ui ) {

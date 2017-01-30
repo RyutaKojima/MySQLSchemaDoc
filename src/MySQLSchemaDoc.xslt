@@ -15,28 +15,26 @@
             </head>
             <body>
                 <div class="container">
-                    <nav id="left_navigation">
+                    <nav id="left_navigation" class="border_radius">
                         <h1>テーブル定義 (<xsl:value-of select="@name"/>)</h1>
                         <div class="nav_filter_block">
-                            <span>Filter:</span><input type="url" id="filter_table_name" name="filter_table_name" style="ime-mode: disabled;" 
+                            <input type="url" id="filter_table_name" name="filter_table_name" style="ime-mode: disabled;" 
                                                        placeholder="テーブル名で絞り込み" title="・正規表現OK・スペース区切りでAND絞り込み" />
                             <button type="button" id="filter_clear">×</button>
-                            <span id="filtered_item_count"></span>
+                            <span id="filtered_item_count">0</span>
                         </div>
                         <div class="nav_list_block">
                             <ul>
                                 <xsl:for-each select="//database/table_structure">
-                                    <li>
-                                        <a class="nav_link" href="#{@name}" data-targetid="{@name}">
-                                            <span class="badge post"><i class="fa fa-plus" /></span><xsl:value-of select="@name"/>
-                                        </a>
+                                    <li class="nav_link" data-targetid="{@name}">
+                                        <span><xsl:value-of select="@name"/></span>
                                     </li>
                                 </xsl:for-each>
                             </ul>
                         </div>
                     </nav>
 
-                    <div id="content">
+                    <div id="content" class="border_radius">
                         <div class="each_table_structure">
                             <span>◆</span>更新方法
                             <pre>

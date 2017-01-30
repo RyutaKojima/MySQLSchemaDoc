@@ -1,19 +1,33 @@
+@import url(http://fonts.googleapis.com/css?family=Source+Code+Pro);
+@import url(http://fonts.googleapis.com/earlyaccess/roundedmplus1c.css);
+
+body, pre {
+	font-family: 'Source Code Pro', 'Rounded Mplus 1c', sans-serif;
+	font-size: 14px;
+	line-height: 130%;
+}
+a {
+	color: black;
+	text-decoration: none;
+}
+
+.border_radius {
+	background-color: white;
+	border: 1px solid #d9d9d9;
+	border-radius: 6px;
+}
+
+/*--------------------------------------------------------------------------------*/
 /** 表示対象テーブルの選択ナビゲーション */
 nav {
 	position: fixed;
 	width: 300px;
 	height: 96%;
 	min-height: 600px;
-	top: 8px;
+	top: 4px;
 	left: 8px;
 	overflow-y: auto;
-
-	background-color: white;
-	border: 1px solid #d9d9d9;
-	border-radius: 6px;
 }
-
-/* ------------------------------ */
 
 #filtered_item_count {
 	margin-left: 8px;
@@ -21,35 +35,33 @@ nav {
 	color: red;
 }
 
-/* ------------------------------ */
 nav div.nav_list_block {
 	margin-top: 20px;
-	height: 82%;
+	height: 85%;
 	overflow-y: scroll;
 }
 nav ul {
 	list-style-type: none;
 	padding-left: 0;
+	border-collapse: collapse;
 }
-nav ul a {
-	display: block;
-	font-size: 13px;
-	color: rgba(0,0,0,0.7);
-	padding: 8px 12px;
+nav ul li.nav_link {
 	border-top: 1px solid #d9d9d9;
-	border-left: 2px solid transparent;
+	padding: 8px 12px;
 	overflow: hidden;
 	text-overflow: ellipsis;
-	text-decoration: none;
 	white-space: nowrap;
+	cursor: pointer;
+	font-size: 12px;
 }
-nav ul a:hover {
+nav ul li.nav_link:hover {
 	text-decoration: none;
-	background-color: bad-color;
-	border: 2px solid black;
+	font-weight: bold;
+	background-color: #e6ffe6;
+	border: 1px solid black;
 }
 
-nav ul a.selected {
+nav ul li.nav_link.selected {
 	background-color: #f7f7cc;
 }
 
@@ -63,44 +75,44 @@ div#content {
 	height: 96%;
 	min-height: 600px;
 	overflow-y: auto;
-	top:  8px;
+	top:  4px;
 	left: 315px;
-
-	background-color: white;
-	border: 1px solid #d9d9d9;
-	border-radius: 6px;
 }
 
 /** テーブルの共通スタイル */
 table {
-	border: 2px solid #000000;
+	border: 1px solid black;
 	border-collapse: collapse;
 }
 table th {
-	background-color: #adadad;
+	background-color: #c8c8c8;
 }
-table td {
+table tbody tr:not(:first-child) {
 	border-top: 1px solid #d9d9d9;
 }
 
+/*--------------------------------------------------------------------------------*/
 /** テーブル概要 */
 table.my-table-spec {
-	margin-top: 8px;
+	margin-top: 1px;
 	margin-left: 10px;
+}
+table.my-table-spec tr:not(:first-child) {
+	border-top: 1px solid #d9d9d9;
 }
 table.my-table-spec th {
 	width: 150px;
-	border-top: 1px solid #d9d9d9;
 }
 table.my-table-spec td {
 	min-width: 400px;
 }
 
+/*--------------------------------------------------------------------------------*/
 /** カラム詳細 */
 table.my-table-detail {
 	table-layout: fixed;
 	margin-left: 10px;
-	margin-top: 2px;
+	margin-top: 1px;
 	text-align: left;
 }
 table.my-table-detail thead {
@@ -110,27 +122,28 @@ table.my-table-detail thead {
 table.my-table-detail tbody {
 	display: block;
 	width: 1380px;
-	height: 600px;
+	height: 580px;
 	overflow-y: scroll;
 	-ms-overflow-y: scroll;
 }
 table.my-table-detail tr {
-	height: 40px;
+	height: 30px;
 }
 table.my-table-detail .cell_no     { width:  30px; }
 table.my-table-detail .cell_column { width: 300px; }
-table.my-table-detail .cell_type   { width: 130px; }
+table.my-table-detail .cell_type   { width: 170px; }
 table.my-table-detail .cell_null   { width:  60px; }
 table.my-table-detail .cell_default{ width: 100px; }
 table.my-table-detail .cell_pri    { width:  70px; }
 table.my-table-detail .cell_uni    { width:  70px; }
 table.my-table-detail .cell_other  { width: 200px; }
-table.my-table-detail .cell_comment{ width: 385px; }
+table.my-table-detail .cell_comment{ width: 345px; }
 
+/*--------------------------------------------------------------------------------*/
 /** インデックス情報 */
 table.my-table-keys {
-	border: 2px solid #ffbd70;
-	margin-top: 2px;
+	border: 1px solid #ffbd70;
+	margin-top: 1px;
 	margin-left: 10px;
 }
 table.my-table-keys thead {
@@ -149,7 +162,7 @@ table.my-table-keys th {
 	text-align: left;
 	width: 120px;
 }
-table.my-table-keys td {
+table.my-table-keys tbody tr:not(:first-child) {
 	border-top: 1px solid #ffbd70;
 }
 table.my-table-keys .cell_key_name    { width:  100px; }
