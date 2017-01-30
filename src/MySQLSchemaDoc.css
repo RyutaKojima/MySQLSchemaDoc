@@ -56,7 +56,7 @@ nav#left_navigation {
 
 /*--------------------------------------------------------------------------------*/
 /** 表示対象テーブルの選択ナビゲーション */
-#filtered_item_count {
+.item_count {
 	margin-left: 8px;
 	font-weight: bold;
 	color: red;

@@ -24,7 +24,10 @@
                             <input type="url" id="filter_table_name" name="filter_table_name" style="ime-mode: disabled;" 
                                                        placeholder="テーブル名で絞り込み" title="・正規表現OK・スペース区切りでAND絞り込み" />
                             <button type="button" id="filter_clear">×</button>
-                            <span id="filtered_item_count">0</span>
+                            <div class="item_count">
+                                <span id="filtered_item_count">0</span> /
+                                <span id="all_item_count">0</span>件
+                            </div>
                         </div>
                         <div class="nav_list_block">
                             <ul>

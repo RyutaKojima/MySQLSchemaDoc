@@ -5,7 +5,7 @@
 	 * メニューリストの表示を管理するクラス
 	 */
 	let menuList = new function(){
-		let prev_filter_text = "";
+		let prev_filter_text = null;
 
 		/**
 		 * テーブル一覧のリストをフィルタ
@@ -93,7 +93,7 @@
 		 * @param count
 		 */
 		this.setDisplayedItemsCount = function (count) {
-			$('#filtered_item_count').text(count + '件');
+			$('#filtered_item_count').text(count);
 		}
 	}();
 
@@ -146,6 +146,8 @@
 		});
 
 		$('div.split-pane').splitPane();
+
+		$('#all_item_count').text( $('.nav_link').length );
 
 		// chrome, firefoxの再起動、firefoxのリロード時などフォーム情報が残った状態でページが開く状況でも
 		// 正常動作させるために、トリガー起動
