@@ -8,14 +8,17 @@
                 <meta charset="utf-8"/>
                 <title>テーブル定義書 - <xsl:value-of select="@name"/></title>
                 <link type="text/css" rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+                <link type="text/css" rel="stylesheet" href="./split-pane.css" />
                 <link type="text/css" rel="stylesheet" href="MySQLSchemaDoc.css" />
                 <script src="http://code.jquery.com/jquery-3.1.1.min.js" />
                 <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous" />
-                <script src="MySQLSchemaDoc.js" />
+                <script src="./split-pane.js" />
+                <script src="./MySQLSchemaDoc.js" />
             </head>
             <body>
-                <div class="container">
-                    <nav id="left_navigation" class="border_radius">
+                <div class="container split-pane fixed-left">
+
+                    <nav id="left_navigation" class="border_radius split-pane-component">
                         <h1>テーブル定義 (<xsl:value-of select="@name"/>)</h1>
                         <div class="nav_filter_block">
                             <input type="url" id="filter_table_name" name="filter_table_name" style="ime-mode: disabled;" 
@@ -34,7 +37,9 @@
                         </div>
                     </nav>
 
-                    <div id="content" class="border_radius">
+                    <div class="split-pane-divider" id="divider"></div>
+
+                    <div id="content" class="border_radius split-pane-component">
                         <div class="each_table_structure">
                             <span>◆</span>更新方法
                             <pre>
@@ -44,6 +49,7 @@
                         </div>
                         <xsl:apply-templates select="table_structure"/>
                     </div>
+
                 </div>
             </body>
         </html>

@@ -13,7 +13,7 @@
 		 * @param filter_text
 		 * @returns {null|Array} 一覧に表示している項目の配列。前回と変更がない場合はnull
 		 */
-		this.filter = function (filter_text) {
+		this.filterList = function (filter_text) {
 			if (prev_filter_text === filter_text) {
 				return null;
 			}
@@ -24,8 +24,8 @@
 				let target_table_name = $(this).data('targetid');
 
 				let isMatched = true;
-				for (let filter of filter_text.split(' ')) {
-					if ( ! target_table_name.match(new RegExp(filter, "i"))) {
+				for (let filter_split of filter_text.split(' ')) {
+					if ( ! target_table_name.match(new RegExp(filter_split, "i"))) {
 						isMatched = false;
 						break;
 					}
@@ -123,14 +123,14 @@
 
 			//setTimeoutを挟まないと、$(this).val()の値がこのタイミングではまだ変わっていない。
 			setTimeout(function($target){
-				let displayed_items = menuList.filter(inputFilter.convertMultiInput($target));
+				let displayed_items = menuList.filterList(inputFilter.convertMultiInput($target));
 				if (displayed_items !== null) {
 					let displayed_count = displayed_items.length;
 					inputFilter.setDisplayedItemsCount(displayed_count);
 
 					//絞り込みの結果、１件ならばその項目を自動で選択する
 					if (displayed_count === 1) {
-						displayed_items[0].find('.nav_link').trigger('click');
+						displayed_items[0].trigger('click');
 					}
 				}
 			}, 1, $(this));
@@ -144,6 +144,8 @@
 				$('div.ui-helper-hidden-accessible').empty();
 			}
 		});
+
+		$('div.split-pane').splitPane();
 
 		// chrome, firefoxの再起動、firefoxのリロード時などフォーム情報が残った状態でページが開く状況でも
 		// 正常動作させるために、トリガー起動

@@ -18,17 +18,44 @@ a {
 }
 
 /*--------------------------------------------------------------------------------*/
-/** 表示対象テーブルの選択ナビゲーション */
-nav {
+
+nav#left_navigation {
 	position: fixed;
 	width: 300px;
+	margin-left: 8px;
+	min-width: 200px;
+
 	height: 96%;
 	min-height: 600px;
-	top: 4px;
-	left: 8px;
+
+	margin-top: 4px;
 	overflow-y: auto;
 }
 
+#divider {
+	position: fixed;
+	left: 300px;
+	width: 5px;
+
+	margin-left: 8px;
+}
+
+#content {
+	position: fixed;
+	left: 300px;
+	margin-left: 13px;	/* #divider の `margin-left` と `width` を足した値 */
+	margin-right: 8px;
+	min-width: 800px;
+
+	height: 96%;
+	min-height: 600px;
+
+	margin-top:  4px;
+	overflow-y: auto;
+}
+
+/*--------------------------------------------------------------------------------*/
+/** 表示対象テーブルの選択ナビゲーション */
 #filtered_item_count {
 	margin-left: 8px;
 	font-weight: bold;
@@ -68,16 +95,6 @@ nav ul li.nav_link.selected {
 /* ------------------------------ */
 
 /** 定義書本体 */
-div#content {
-	position: fixed;
-	width: 80%;
-	min-width: 800px;
-	height: 96%;
-	min-height: 600px;
-	overflow-y: auto;
-	top:  4px;
-	left: 315px;
-}
 
 /** テーブルの共通スタイル */
 table {
