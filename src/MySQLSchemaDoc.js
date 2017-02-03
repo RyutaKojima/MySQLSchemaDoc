@@ -21,7 +21,7 @@
 
 			let displayed_items = [];
 			$('#left_navigation').find('li.nav_link').each(function(){
-				let target_table_name = $(this).data('targetid');
+				let target_table_name = $(this).text();
 
 				let isMatched = true;
 				for (let filter_split of filter_text.split(' ')) {
@@ -102,8 +102,10 @@
 	 */
 	$(function(){
 		$(document).on('click', '.nav_link', function(){
+			let target_table_name = $(this).text();
+
 			$('.each_table_structure').hide();
-			$('#'+$(this).data('targetid')).show();
+			$('#'+target_table_name).show();
 
 			$('.selected').removeClass('selected');
 			$(this).addClass('selected');

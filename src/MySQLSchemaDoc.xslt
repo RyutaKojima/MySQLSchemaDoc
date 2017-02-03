@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf8"?>
-<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:s="http://sqlfairy.sourceforge.net/sqlfairy.xml">
-    <xsl:output method="html" encoding="utf8" doctype-public="-//W3C//DTD XHTML 1.0 Transitional//EN"/>
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+    <xsl:output encoding="utf8" method="html" version="5" />
 
     <xsl:template match="database">
         <html lang="ja">
@@ -20,20 +20,20 @@
 
                     <nav id="left_navigation" class="border_radius split-pane-component">
                         <h1>テーブル定義 (<xsl:value-of select="@name"/>)</h1>
-                        <div class="nav_filter_block">
+                        <div id="nav_filter_block">
                             <input type="url" id="filter_table_name" name="filter_table_name" style="ime-mode: disabled;" 
-                                                       placeholder="テーブル名で絞り込み" title="・正規表現OK・スペース区切りでAND絞り込み" />
+                                   placeholder="テーブル名で絞り込み" title="・正規表現OK・スペース区切りでAND絞り込み" />
                             <button type="button" id="filter_clear">×</button>
                             <div class="item_count">
                                 <span id="filtered_item_count">0</span> /
                                 <span id="all_item_count">0</span>件
                             </div>
                         </div>
-                        <div class="nav_list_block">
+                        <div id="nav_list_block">
                             <ul>
                                 <xsl:for-each select="//database/table_structure">
-                                    <li class="nav_link" data-targetid="{@name}">
-                                        <span><xsl:value-of select="@name"/></span>
+                                    <li class="nav_link">
+                                        <xsl:value-of select="@name"/>
                                     </li>
                                 </xsl:for-each>
                             </ul>
@@ -44,11 +44,19 @@
 
                     <div id="content" class="border_radius split-pane-component">
                         <div class="each_table_structure">
-                            <span>◆</span>更新方法
+                            <h1>◆更新方法</h1>
                             <pre>
-                                mysqldump --no-data --xml -u {user_name} -p -h {host_name} {database_name} > mysqldump_create.xml
-                                xsltproc -o index.html MySQLSchemaDoc.xslt mysqldump_create.xml
+mysqldump --no-data --xml -u {user_name} -p -h {host_name} {database_name} > mysqldump_create.xml
+xsltproc -o index.html MySQLSchemaDoc.xslt mysqldump_create.xml
                             </pre>
+                            <h1>◆動作環境</h1>
+                            <p>
+                                下記の環境で動作テストをしています。
+                            </p>
+                            <ul>
+                                <li>Google Chrome 最新版</li>
+                                <li>Firefox 最新版</li>
+                            </ul>
                         </div>
                         <xsl:apply-templates select="table_structure"/>
                     </div>

@@ -1,7 +1,10 @@
 @import url(http://fonts.googleapis.com/css?family=Source+Code+Pro);
 @import url(http://fonts.googleapis.com/earlyaccess/roundedmplus1c.css);
 
-body, pre {
+/*--------------------------------------------------------------------------------*/
+/* 標準タグ　スタイル設定 */
+
+body, pre, code {
 	font-family: 'Source Code Pro', 'Rounded Mplus 1c', sans-serif;
 	font-size: 14px;
 	line-height: 130%;
@@ -10,6 +13,28 @@ a {
 	color: black;
 	text-decoration: none;
 }
+pre {
+	background-color: #f5f5f5;
+	padding: 8px;
+}
+
+table {
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+
+table th {
+	background-color: #c8c8c8;
+}
+
+table tbody tr {
+	border-bottom: 1px solid #d9d9d9;
+}
+table tbody tr:hover {
+	background-color: #e6ffe6;
+}
+
+/*--------------------------------------------------------------------------------*/
 
 .border_radius {
 	background-color: white;
@@ -62,33 +87,46 @@ nav#left_navigation {
 	color: red;
 }
 
-nav div.nav_list_block {
+#left_navigation #nav_list_block {
 	margin-top: 20px;
 	height: 85%;
 	overflow-y: scroll;
 }
-nav ul {
+#left_navigation ul {
 	list-style-type: none;
 	padding-left: 0;
 	border-collapse: collapse;
 }
-nav ul li.nav_link {
-	border-top: 1px solid #d9d9d9;
-	padding: 8px 12px;
+#left_navigation ul li.nav_link {
+	border-bottom: 1px solid #d9d9d9;
+	padding: 8px 0 8px 3px;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	cursor: pointer;
 	font-size: 12px;
 }
-nav ul li.nav_link:hover {
+
+/* ひし形マーク */
+#left_navigation li.nav_link:before {
+	content: '';
+	display: inline-block;
+	width: .5em;
+	height: .5em;
+	margin-right: .3em;
+	background-color: black;
+	transform: rotate(45deg);
+	vertical-align: 2px;
+}
+
+#left_navigation ul li.nav_link:hover {
 	text-decoration: none;
 	font-weight: bold;
 	background-color: #e6ffe6;
-	border: 1px solid black;
+	border-bottom: 1px solid black;
 }
 
-nav ul li.nav_link.selected {
+#left_navigation ul li.nav_link.selected {
 	background-color: #f7f7cc;
 }
 
@@ -96,26 +134,14 @@ nav ul li.nav_link.selected {
 
 /** 定義書本体 */
 
-/** テーブルの共通スタイル */
-table {
-	border: 1px solid black;
-	border-collapse: collapse;
-}
-table th {
-	background-color: #c8c8c8;
-}
-table tbody tr:not(:first-child) {
-	border-top: 1px solid #d9d9d9;
-}
-
 /*--------------------------------------------------------------------------------*/
 /** テーブル概要 */
 table.my-table-spec {
 	margin-top: 1px;
 	margin-left: 10px;
 }
-table.my-table-spec tr:not(:first-child) {
-	border-top: 1px solid #d9d9d9;
+table.my-table-spec tr:last-child {
+	border-bottom: 1px solid black;
 }
 table.my-table-spec th {
 	width: 150px;
@@ -159,7 +185,7 @@ table.my-table-detail .cell_comment{ width: 345px; }
 /*--------------------------------------------------------------------------------*/
 /** インデックス情報 */
 table.my-table-keys {
-	border: 1px solid #ffbd70;
+	border: 1px solid #ffdeaf;
 	margin-top: 1px;
 	margin-left: 10px;
 }
@@ -175,12 +201,12 @@ table.my-table-keys tbody {
 	-ms-overflow-y: scroll;
 }
 table.my-table-keys th {
-	background-color: #ffbd70;
+	background-color: #ffdeaf;
 	text-align: left;
 	width: 120px;
 }
-table.my-table-keys tbody tr:not(:first-child) {
-	border-top: 1px solid #ffbd70;
+table.my-table-keys tbody tr {
+	border-bottom: 1px solid #ffdeaf;
 }
 table.my-table-keys .cell_key_name    { width:  100px; }
 table.my-table-keys .cell_unique      { width:  100px; }
