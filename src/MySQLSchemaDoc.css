@@ -2,12 +2,22 @@
 @import url(http://fonts.googleapis.com/earlyaccess/roundedmplus1c.css);
 
 /*--------------------------------------------------------------------------------*/
+/* vender DataTables */
+table.dataTable thead th, table.dataTable thead td {
+	padding: 0 18px;
+}
+/* 検索窓を左に表示 */
+.dataTables_wrapper .dataTables_filter {
+	float: left;
+}
+
+/*--------------------------------------------------------------------------------*/
 /* 標準タグ　スタイル設定 */
 
-body, pre, code {
+body, pre, code, table {
 	font-family: 'Source Code Pro', 'Rounded Mplus 1c', sans-serif;
-	font-size: 14px;
-	line-height: 130%;
+	font-size: medium;
+	line-height: 120%;
 }
 a {
 	color: black;
@@ -18,16 +28,48 @@ pre {
 	padding: 8px;
 }
 
-table {
+dl {
+	margin: 0;
+	padding: 0;
 	border: 1px solid black;
+	font-size: small;
+	line-height: 120%;
+}
+dt:not(:last-of-type), dd:not(:last-of-type) {
+	border-bottom: 1px solid #d9d9d9;
+}
+dt {
+	background: #999999;
+	min-width: 200px;
+	height: 20px;
+	float: left;
+	clear : both;
+	text-align: center;
+}
+dd {
+	margin: 0;
+	padding-left: 204px;
+	min-width: 400px;
+	height: 20px;
+	background-color: white;
+}
+dd:hover {
+	background-color: #e6ffe6;
+}
+
+/* table */
+table {
+	/*border: 1px solid black;*/
 	border-collapse: collapse;
 }
 
 table th {
+	font-size: small;
+	text-align: left;
 	background-color: #c8c8c8;
 }
 
-table tbody tr {
+table tbody td {
 	border-bottom: 1px solid #d9d9d9;
 }
 table tbody tr:hover {
@@ -37,24 +79,18 @@ table tbody tr:hover {
 /*--------------------------------------------------------------------------------*/
 
 .border_radius {
-	background-color: white;
+	background-color: #fafafa;
 	border: 1px solid #d9d9d9;
 	border-radius: 6px;
 }
 
 /*--------------------------------------------------------------------------------*/
-
-nav#left_navigation {
+/* split-pane ライブラリ用の設定 */
+#split_pane_left {
 	position: fixed;
 	width: 300px;
 	margin-left: 8px;
 	min-width: 200px;
-
-	height: 96%;
-	min-height: 600px;
-
-	margin-top: 4px;
-	overflow-y: auto;
 }
 
 #divider {
@@ -65,17 +101,31 @@ nav#left_navigation {
 	margin-left: 8px;
 }
 
-#content {
+#split_pane_right {
 	position: fixed;
 	left: 300px;
 	margin-left: 13px;	/* #divider の `margin-left` と `width` を足した値 */
 	margin-right: 8px;
 	min-width: 800px;
+}
 
-	height: 96%;
+/*--------------------------------------------------------------------------------*/
+
+#left_navigation {
+	height: 98%;
 	min-height: 600px;
 
-	margin-top:  4px;
+	margin-top: 4px;
+	overflow-y: auto;
+}
+
+#content{
+	margin: 4px 0 0 0;
+	padding: 1px 10px;
+
+	height: 98%;
+	min-height: 600px;
+
 	overflow-y: auto;
 }
 
@@ -87,17 +137,18 @@ nav#left_navigation {
 	color: red;
 }
 
-#left_navigation #nav_list_block {
+#nav_list_block {
 	margin-top: 20px;
 	height: 85%;
 	overflow-y: scroll;
 }
-#left_navigation ul {
+#nav_list_block ul {
+	background-color: white;
 	list-style-type: none;
 	padding-left: 0;
 	border-collapse: collapse;
 }
-#left_navigation ul li.nav_link {
+#nav_list_block ul li.nav_link {
 	border-bottom: 1px solid #d9d9d9;
 	padding: 8px 0 8px 3px;
 	overflow: hidden;
@@ -108,7 +159,7 @@ nav#left_navigation {
 }
 
 /* ひし形マーク */
-#left_navigation li.nav_link:before {
+#nav_list_block li.nav_link:before {
 	content: '';
 	display: inline-block;
 	width: .5em;
@@ -119,14 +170,14 @@ nav#left_navigation {
 	vertical-align: 2px;
 }
 
-#left_navigation ul li.nav_link:hover {
+#nav_list_block ul li.nav_link:hover {
 	text-decoration: none;
 	font-weight: bold;
 	background-color: #e6ffe6;
 	border-bottom: 1px solid black;
 }
 
-#left_navigation ul li.nav_link.selected {
+#nav_list_block ul li.nav_link.selected {
 	background-color: #f7f7cc;
 }
 
@@ -135,82 +186,19 @@ nav#left_navigation {
 /** 定義書本体 */
 
 /*--------------------------------------------------------------------------------*/
-/** テーブル概要 */
-table.my-table-spec {
-	margin-top: 1px;
-	margin-left: 10px;
-}
-table.my-table-spec tr:last-child {
-	border-bottom: 1px solid black;
-}
-table.my-table-spec th {
-	width: 150px;
-}
-table.my-table-spec td {
-	min-width: 400px;
-}
-
-/*--------------------------------------------------------------------------------*/
 /** カラム詳細 */
-table.my-table-detail {
-	table-layout: fixed;
-	margin-left: 10px;
-	margin-top: 1px;
+.my-table-detail table {
+	/*table-layout: fixed;*/
+	/*margin-top: 1px;*/
 	text-align: left;
 }
-table.my-table-detail thead {
-	display: block;
-	width: 1380px;
-}
-table.my-table-detail tbody {
-	display: block;
-	width: 1380px;
-	height: 580px;
-	overflow-y: scroll;
-	-ms-overflow-y: scroll;
-}
-table.my-table-detail tr {
-	height: 30px;
-}
-table.my-table-detail .cell_no     { width:  30px; }
-table.my-table-detail .cell_column { width: 300px; }
-table.my-table-detail .cell_type   { width: 170px; }
-table.my-table-detail .cell_null   { width:  60px; }
-table.my-table-detail .cell_default{ width: 100px; }
-table.my-table-detail .cell_pri    { width:  70px; }
-table.my-table-detail .cell_uni    { width:  70px; }
-table.my-table-detail .cell_other  { width: 200px; }
-table.my-table-detail .cell_comment{ width: 345px; }
+.my-table-detail table .cell_no     { color: blue; font-weight: bold; }
 
 /*--------------------------------------------------------------------------------*/
 /** インデックス情報 */
-table.my-table-keys {
-	border: 1px solid #ffdeaf;
-	margin-top: 1px;
-	margin-left: 10px;
-}
-table.my-table-keys thead {
-	display: block;
-	width: 1380px;
-}
-table.my-table-keys tbody {
-	display: block;
-	width: 1380px;
-	height: 140px;
-	overflow-y: scroll;
-	-ms-overflow-y: scroll;
-}
-table.my-table-keys th {
+.my-table-keys table th {
 	background-color: #ffdeaf;
-	text-align: left;
-	width: 120px;
 }
-table.my-table-keys tbody tr {
+.my-table-keys table tbody td {
 	border-bottom: 1px solid #ffdeaf;
 }
-table.my-table-keys .cell_key_name    { width:  100px; }
-table.my-table-keys .cell_unique      { width:  100px; }
-table.my-table-keys .cell_column_name { width:  300px; }
-table.my-table-keys .cell_seq_in_index{ width:  120px; }
-table.my-table-keys .cell_cardinality { width:  100px; }
-table.my-table-keys .cell_comment     { width:  630px; }

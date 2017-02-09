@@ -1,6 +1,51 @@
 "use strict";
 
 (function() {
+	let optionsDataTable = {
+		forDefault: {
+			language: {
+				url: "http://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Japanese.json"
+			},
+			displayLength: 5000,		// 表示件数
+			lengthChange: false,		// 件数切替機能
+			searching:    true,			// 検索機能
+			ordering:     true,			// ソート機能
+			info:         false,		// 左下の情報表示
+			paging:       false,		// ページング機能 無効
+		},
+		forDetail: {
+			scrollY: "580px",			// 縦スクロールバーを有効にする (scrollYは200, "200px"など「最大の高さ」を指定します)
+			// 列設定
+			columnDefs: [
+				{targets: "cell_no",      width: 30},
+				{targets: "cell_column",  width: 300},
+				{targets: "cell_type",    width: 170},
+				{targets: "cell_null",    width: 50},
+				{targets: "cell_default", width: 90},
+				{targets: "cell_pri",     width: 50},
+				{targets: "cell_uni",     width: 50},
+				{targets: "cell_other",   width: 170},
+				{targets: "cell_comment", width: 300},
+			]
+		},
+		forKeys: {
+			scrollY: "140px",			// 縦スクロールバーを有効にする (scrollYは200, "200px"など「最大の高さ」を指定します)
+			lengthChange: false,		// 件数切替機能
+			searching:    true,			// 検索機能
+			ordering:     false,		// ソート機能
+			info:         false,		// 左下の情報表示
+			paging:       false,		// ページング機能 無効
+			columnDefs: [
+				{targets: "cell_key_name",     width: 100},
+				{targets: "cell_unique",       width: 60},
+				{targets: "cell_column_name",  width: 300},
+				{targets: "cell_seq_in_index", width: 120},
+				{targets: "cell_cardinality",  width: 100},
+				{targets: "cell_comment",      width: 600},
+			]
+		},
+	};
+
 	/**
 	 * メニューリストの表示を管理するクラス
 	 */
@@ -101,11 +146,18 @@
 	 * jQuery ready
 	 */
 	$(function(){
+		// DataTablesのデフォルト設定を変更
+		$.extend( $.fn.dataTable.defaults, optionsDataTable.forDefault);
+
 		$(document).on('click', '.nav_link', function(){
 			let target_table_name = $(this).text();
+			let $section = $('#'+target_table_name);
 
 			$('.each_table_structure').hide();
-			$('#'+target_table_name).show();
+			$section.show();
+
+			$section.children('.my-table-detail').children('table').dataTable(optionsDataTable.forDetail);
+			$section.children('.my-table-keys').children('table').dataTable(optionsDataTable.forKeys);
 
 			$('.selected').removeClass('selected');
 			$(this).addClass('selected');
