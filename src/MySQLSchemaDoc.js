@@ -167,6 +167,12 @@
 			$('#filter_table_name').val('').trigger('keydown').focus();
 		});
 
+		$('.my-table-spec').click(function(){
+			let $all_specs = $('.my-table-spec');
+			$all_specs.find('dt:not(:first-of-type)').toggle();
+			$all_specs.find('dd:not(:first-of-type)').toggle();
+		});
+
 		$(document).on('keydown', '#filter_table_name', function(e){
 			if ('originalEvent' in e && e.originalEvent.repeat) {
 				if (-1 == $.inArray(e.keyCode, [8, 46])) {
