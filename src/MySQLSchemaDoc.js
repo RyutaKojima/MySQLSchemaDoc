@@ -112,7 +112,7 @@
 		});
 
 		$(document).on('click', '#filter_clear', function(){
-			$('#filter_table_name').val('').trigger('keydown');
+			$('#filter_table_name').val('').trigger('keydown').focus();
 		});
 
 		$(document).on('keydown', '#filter_table_name', function(e){
