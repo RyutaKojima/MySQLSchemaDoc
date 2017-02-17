@@ -7,12 +7,12 @@
             <head>
                 <meta charset="utf-8"/>
                 <title>テーブル定義書 - <xsl:value-of select="@name"/></title>
-                <link type="text/css" rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+                <link type="text/css" rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
                 <link type="text/css" rel="stylesheet" href="https://cdn.datatables.net/v/dt/dt-1.10.13/fh-3.1.2/datatables.min.css"/>
                 <link type="text/css" rel="stylesheet" href="./split-pane.css" />
                 <link type="text/css" rel="stylesheet" href="MySQLSchemaDoc.css" />
-                <script src="http://code.jquery.com/jquery-3.1.1.min.js" />
-                <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous" />
+                <script src="https://code.jquery.com/jquery-3.1.1.min.js" />
+                <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous" />
                 <script src="https://cdn.datatables.net/v/dt/dt-1.10.13/fh-3.1.2/datatables.min.js"></script>
                 <script src="./split-pane.js" />
                 <script src="./MySQLSchemaDoc.js" />

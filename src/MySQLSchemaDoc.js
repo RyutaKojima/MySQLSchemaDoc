@@ -4,7 +4,7 @@
 	let optionsDataTable = {
 		forDefault: {
 			language: {
-				url: "http://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Japanese.json"
+				url: "https://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Japanese.json"
 			},
 			displayLength: 5000,		// 表示件数
 			lengthChange: false,		// 件数切替機能
