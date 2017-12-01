@@ -1,5 +1,7 @@
-# MySQLSchemaDoc
+# 概要
 MySQLのデータベースの構造ドキュメントを、mysqldumpのデータを使って、HTMLで出力します。
+
+[動作デモ](https://ryutakojima.github.io/MySQLSchemaDoc/)
 
 # 利用方法
 
