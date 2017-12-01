@@ -1,0 +1,200 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf8">
+<meta charset="utf-8">
+<title>テーブル定義書 - SampleDB</title>
+<link type="text/css" rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link type="text/css" rel="stylesheet" href="https://cdn.datatables.net/v/dt/dt-1.10.13/fh-3.1.2/datatables.min.css">
+<link type="text/css" rel="stylesheet" href="./split-pane.css">
+<link type="text/css" rel="stylesheet" href="MySQLSchemaDoc.css">
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script><script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script><script src="https://cdn.datatables.net/v/dt/dt-1.10.13/fh-3.1.2/datatables.min.js"></script><script src="./split-pane.js"></script><script src="./MySQLSchemaDoc.js"></script>
+</head>
+<body><div class="container split-pane fixed-left">
+<div id="split_pane_left" class="split-pane-component"><nav id="left_navigation" class="border_radius"><h1>テーブル定義 (SampleDB)</h1>
+<div id="nav_filter_block">
+<input type="url" id="filter_table_name" name="filter_table_name" style="ime-mode: disabled;" placeholder="テーブル名で絞り込み" title="・正規表現OK・スペース区切りでAND絞り込み"><button type="button" id="filter_clear">×</button><div class="item_count">
+<span id="filtered_item_count">0</span> /
+                                    <span id="all_item_count">0</span>件
+                                </div>
+</div>
+<div id="nav_list_block"><ul>
+<li class="nav_link">Favorites</li>
+<li class="nav_link">Users</li>
+</ul></div></nav></div>
+<div class="split-pane-divider" id="divider"></div>
+<div id="split_pane_right" class="split-pane-component"><div id="content" class="border_radius">
+<div class="each_table_structure">
+<h1>◆更新方法</h1>
+<pre>
+mysqldump --no-data --xml -u {user_name} -p -h {host_name} {database_name} &gt; mysqldump_create.xml
+xsltproc -o index.html MySQLSchemaDoc.xslt mysqldump_create.xml
+                                </pre>
+<h1>◆動作環境</h1>
+<p>
+                                    下記の環境で動作テストをしています。
+                                </p>
+<ul>
+<li>Google Chrome 最新版</li>
+<li>Firefox 最新版</li>
+</ul>
+</div>
+<section id="Favorites" class="resource each_table_structure" style="display: none;"><dl class="my-table-spec">
+<dt>テーブル名</dt>
+<dd>Favorites</dd>
+<dt>コメント</dt>
+<dd>お気に入りテーブル</dd>
+<dt>文字コード</dt>
+<dd>utf8_general_ci</dd>
+<dt>エンジン</dt>
+<dd>InnoDB</dd>
+<dt>作成日</dt>
+<dd>2017-12-01 12:20:17</dd>
+</dl>
+<div class="my-table-detail"><table>
+<thead><tr>
+<th class="cell_no">#</th>
+<th class="cell_column">カラム名</th>
+<th class="cell_type">型</th>
+<th class="cell_null">NULL</th>
+<th class="cell_default">デフォルト</th>
+<th class="cell_pri">主キー</th>
+<th class="cell_uni">ユニーク</th>
+<th class="cell_other">その他</th>
+<th class="cell_comment">コメント</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class="cell_no">1</td>
+<td class="cell_column">favorite_id</td>
+<td class="cell_type">int(11) unsigned</td>
+<td class="cell_null"></td>
+<td class="cell_default"></td>
+<td class="cell_pri">PRI</td>
+<td class="cell_uni"></td>
+<td class="cell_other">auto_increment</td>
+<td class="cell_comment">お気に入りID</td>
+</tr>
+<tr>
+<td class="cell_no">2</td>
+<td class="cell_column">user_id</td>
+<td class="cell_type">int(11) unsigned</td>
+<td class="cell_null"></td>
+<td class="cell_default">0</td>
+<td class="cell_pri"></td>
+<td class="cell_uni"></td>
+<td class="cell_other"></td>
+<td class="cell_comment">ユーザーID</td>
+</tr>
+<tr>
+<td class="cell_no">3</td>
+<td class="cell_column">content</td>
+<td class="cell_type">varchar(64)</td>
+<td class="cell_null"></td>
+<td class="cell_default"></td>
+<td class="cell_pri"></td>
+<td class="cell_uni"></td>
+<td class="cell_other"></td>
+<td class="cell_comment">好きなこと</td>
+</tr>
+</tbody>
+</table></div>
+<div class="table my-table-keys"><table>
+<thead><tr>
+<th class="cell_key_name">キー名</th>
+<th class="cell_unique">ユニーク</th>
+<th class="cell_column_name">対象カラム</th>
+<th class="cell_seq_in_index">シーケンス番号</th>
+<th class="cell_cardinality">カーディナリ</th>
+<th class="cell_comment">コメント</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class="cell_key_name">PRIMARY</td>
+<td class="cell_unique">〇</td>
+<td class="cell_column_name">favorite_id</td>
+<td class="cell_seq_in_index">1</td>
+<td class="cell_cardinality">0</td>
+<td class="cell_comment"></td>
+</tr>
+<tr>
+<td class="cell_key_name">foreign_user</td>
+<td class="cell_unique"></td>
+<td class="cell_column_name">user_id</td>
+<td class="cell_seq_in_index">1</td>
+<td class="cell_cardinality">0</td>
+<td class="cell_comment"></td>
+</tr>
+</tbody>
+</table></div></section><section id="Users" class="resource each_table_structure" style="display: none;"><dl class="my-table-spec">
+<dt>テーブル名</dt>
+<dd>Users</dd>
+<dt>コメント</dt>
+<dd>ユーザーテーブル</dd>
+<dt>文字コード</dt>
+<dd>utf8_general_ci</dd>
+<dt>エンジン</dt>
+<dd>InnoDB</dd>
+<dt>作成日</dt>
+<dd>2017-12-01 12:19:41</dd>
+</dl>
+<div class="my-table-detail"><table>
+<thead><tr>
+<th class="cell_no">#</th>
+<th class="cell_column">カラム名</th>
+<th class="cell_type">型</th>
+<th class="cell_null">NULL</th>
+<th class="cell_default">デフォルト</th>
+<th class="cell_pri">主キー</th>
+<th class="cell_uni">ユニーク</th>
+<th class="cell_other">その他</th>
+<th class="cell_comment">コメント</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class="cell_no">1</td>
+<td class="cell_column">user_id</td>
+<td class="cell_type">int(11) unsigned</td>
+<td class="cell_null"></td>
+<td class="cell_default"></td>
+<td class="cell_pri">PRI</td>
+<td class="cell_uni"></td>
+<td class="cell_other">auto_increment</td>
+<td class="cell_comment">ユーザーID</td>
+</tr>
+<tr>
+<td class="cell_no">2</td>
+<td class="cell_column">name</td>
+<td class="cell_type">varchar(64)</td>
+<td class="cell_null"></td>
+<td class="cell_default"></td>
+<td class="cell_pri"></td>
+<td class="cell_uni"></td>
+<td class="cell_other"></td>
+<td class="cell_comment">なまえ</td>
+</tr>
+</tbody>
+</table></div>
+<div class="table my-table-keys"><table>
+<thead><tr>
+<th class="cell_key_name">キー名</th>
+<th class="cell_unique">ユニーク</th>
+<th class="cell_column_name">対象カラム</th>
+<th class="cell_seq_in_index">シーケンス番号</th>
+<th class="cell_cardinality">カーディナリ</th>
+<th class="cell_comment">コメント</th>
+</tr></thead>
+<tbody><tr>
+<td class="cell_key_name">PRIMARY</td>
+<td class="cell_unique">〇</td>
+<td class="cell_column_name">user_id</td>
+<td class="cell_seq_in_index">1</td>
+<td class="cell_cardinality">0</td>
+<td class="cell_comment"></td>
+</tr></tbody>
+</table></div></section>
+</div></div>
+</div></body>
+</html>
+
