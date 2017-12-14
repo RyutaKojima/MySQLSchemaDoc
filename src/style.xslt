@@ -108,7 +108,18 @@ xsltproc -o index.html MySQLSchemaDoc.xslt mysqldump_create.xml
                                 <td class="cell_column"><xsl:value-of select="@Field"/></td>
                                 <td class="cell_type"><xsl:value-of select="@Type"/></td>
                                 <td class="cell_null"><xsl:if test="@Null='YES'">〇</xsl:if></td>
-                                <td class="cell_default"><xsl:value-of select="@Default"/></td>
+                                <td class="cell_default">
+                                    <xsl:if test="count(@Default)>0">
+                                        <xsl:choose>
+                                            <xsl:when test="@Default='CURRENT_TIMESTAMP'">
+                                                <pre><xsl:value-of select="@Default"/></pre>
+                                            </xsl:when>
+                                            <xsl:otherwise>
+                                                <pre>&quot;<xsl:value-of select="@Default"/>&quot;</pre>
+                                            </xsl:otherwise>
+                                        </xsl:choose>
+                                    </xsl:if>
+                                </td>
                                 <td class="cell_pri"><xsl:if test="@Key='PRI'"><xsl:value-of select="@Key"/></xsl:if></td>
                                 <td class="cell_uni"><xsl:if test="@Key='UNI'"><xsl:value-of select="@Key"/></xsl:if></td>
                                 <td class="cell_other"><xsl:value-of select="@Extra"/></td>
