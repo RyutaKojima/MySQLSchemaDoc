@@ -10,7 +10,7 @@ MySQLのデータベースの構造ドキュメントを、mysqldumpのデータ
 
 2. `mysqldump`で、DBのテーブル構造をXML形式で出力  
 > format> `mysqldump --no-data --xml [対象DB名] > [出力ファイル名(xml)]`  
-`mysqldump --no-data --xml SampleTable > mysqldump.xml`  
+`mysqldump --no-data --xml SampleDB > mysqldump.xml`  
 
 3. `xsltproc`でHTMLを出力  
 > format> `xsltproc -o [成果物ファイル名(html)] template.xslt [出力ファイル名(xml)]`  
