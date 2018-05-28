@@ -29,7 +29,7 @@
 			]
 		},
 		forKeys: {
-			scrollY: "140px",			// 縦スクロールバーを有効にする (scrollYは200, "200px"など「最大の高さ」を指定します)
+			// scrollY: "140px",			// 縦スクロールバーを有効にする (scrollYは200, "200px"など「最大の高さ」を指定します)
 			lengthChange: false,		// 件数切替機能
 			searching:    true,			// 検索機能
 			ordering:     false,		// ソート機能

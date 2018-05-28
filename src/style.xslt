@@ -21,8 +21,8 @@
                 <div class="container split-pane fixed-left">
                     <div id="split_pane_left" class="split-pane-component">
                         <nav id="left_navigation" class="border_radius">
-                            <h1>テーブル定義 (<xsl:value-of select="@name"/>)</h1>
                             <div id="nav_filter_block">
+                                <h1>テーブル定義(<xsl:value-of select="@name"/>)</h1>
                                 <input type="url" id="filter_table_name" name="filter_table_name" style="ime-mode: disabled;" 
                                        placeholder="テーブル名で絞り込み" title="・正規表現OK・スペース区切りでAND絞り込み" />
                                 <button type="button" id="filter_clear">×</button>
@@ -107,7 +107,12 @@ xsltproc -o index.html MySQLSchemaDoc.xslt mysqldump_create.xml
                                 <td class="cell_no"><xsl:value-of select="position()"/></td>
                                 <td class="cell_column"><xsl:value-of select="@Field"/></td>
                                 <td class="cell_type"><xsl:value-of select="@Type"/></td>
-                                <td class="cell_null"><xsl:if test="@Null='YES'">〇</xsl:if></td>
+                                <td class="cell_null">
+                                    <xsl:choose>
+                                        <xsl:when test="@Null='YES'">〇</xsl:when>
+                                        <xsl:otherwise>-</xsl:otherwise>
+                                    </xsl:choose>
+                                </td>
                                 <td class="cell_default">
                                     <xsl:if test="count(@Default)>0">
                                         <xsl:choose>
