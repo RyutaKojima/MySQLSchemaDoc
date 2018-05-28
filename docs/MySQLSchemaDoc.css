@@ -14,18 +14,25 @@ table.dataTable thead th, table.dataTable thead td {
 /*--------------------------------------------------------------------------------*/
 /* 標準タグ　スタイル設定 */
 
+html, body {
+	height: 100%;
+	margin: 0;
+}
+
 body, pre, code, table {
 	font-family: 'Source Code Pro', 'Rounded Mplus 1c', sans-serif;
-	font-size: medium;
-	line-height: 120%;
+	font-size: small;
+	line-height: 114%;
 }
 a {
 	color: black;
 	text-decoration: none;
 }
+
 pre {
-	background-color: #f5f5f5;
-	padding: 8px;
+	background-color: #e0e0e0;
+	padding: 2px;
+	margin: 0;
 }
 
 dl {
@@ -112,20 +119,26 @@ table tbody tr:hover {
 /*--------------------------------------------------------------------------------*/
 
 #left_navigation {
-	height: 98%;
-	min-height: 600px;
-
-	margin-top: 4px;
+	height: 100%;
+	margin: 0;
 	overflow-y: auto;
+	border-top-width: 0;
+	border-bottom-width: 0;
+}
+
+#left_navigation h1 {
+	margin: 10px 2px;
+	font-size: 1.2em;
 }
 
 #content{
-	margin: 4px 0 0 0;
-	padding: 1px 10px;
-
-	height: 98%;
+	margin: 0;
+	padding: 0;
+	height: 100%;
 	min-height: 600px;
 
+	border-top-width: 0;
+	border-bottom-width: 0;
 	overflow-y: auto;
 }
 
@@ -137,9 +150,13 @@ table tbody tr:hover {
 	color: red;
 }
 
+#nav_filter_block {
+	height: 78px;
+}
+
 #nav_list_block {
-	margin-top: 20px;
-	height: 85%;
+	margin: 0;
+	height: calc(96% - 78px);
 	overflow-y: scroll;
 }
 #nav_list_block ul {
@@ -186,6 +203,11 @@ table tbody tr:hover {
 /** 定義書本体 */
 
 /*--------------------------------------------------------------------------------*/
+
+.each_table_structure {
+	margin: 4px 0;
+}
+
 /** カラム詳細 */
 .my-table-detail table {
 	/*table-layout: fixed;*/
