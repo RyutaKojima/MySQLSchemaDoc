@@ -143,6 +143,32 @@ table tbody tr:hover {
 }
 
 /*--------------------------------------------------------------------------------*/
+/** 右上のフロートメニュー */
+#floatingMenu {
+	z-index: 10001;
+	display: block;
+	position: fixed;
+	top: 10px;
+	right: 30px;
+}
+
+#floatingMenu ul {
+	margin: 0;
+	padding: 0;
+}
+
+#floatingMenu ul li {
+	display: inline-block;
+	vertical-align: top;
+}
+
+#scrool-to-top, #scrool-to-bottom {
+	height: 30px;
+	width: 30px;
+	display: block;
+}
+
+/*--------------------------------------------------------------------------------*/
 /** 表示対象テーブルの選択ナビゲーション */
 .item_count {
 	margin-left: 8px;

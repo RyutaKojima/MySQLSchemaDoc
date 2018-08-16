@@ -18,6 +18,15 @@
                 <script src="./MySQLSchemaDoc.js" />
             </head>
             <body>
+                <div id="floatingMenu">
+                    <ul>
+                        <li>
+                            <button id="scrool-to-top">↑</button>
+                            <button id="scrool-to-bottom">↓</button>
+                        </li>
+                    </ul>
+                </div>
+
                 <div class="container split-pane fixed-left">
                     <div id="split_pane_left" class="split-pane-component">
                         <nav id="left_navigation" class="border_radius">

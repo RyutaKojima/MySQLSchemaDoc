@@ -146,6 +146,8 @@
 	 * jQuery ready
 	 */
 	$(function(){
+		const $content = $('#content');
+
 		// DataTablesのデフォルト設定を変更
 		$.extend( $.fn.dataTable.defaults, optionsDataTable.forDefault);
 
@@ -161,6 +163,9 @@
 
 			$('.selected').removeClass('selected');
 			$(this).addClass('selected');
+			$section.addClass('selected');
+
+			$content.scrollTop(0);
 		});
 
 		$(document).on('click', '#filter_clear', function(){
@@ -206,5 +211,14 @@
 		// chrome, firefoxの再起動、firefoxのリロード時などフォーム情報が残った状態でページが開く状況でも
 		// 正常動作させるために、トリガー起動
 		$('#filter_table_name').trigger('keydown');
+
+		$('#scrool-to-top').on('click', function () {
+			$content.animate({scrollTop: 0}, 200);
+		});
+
+		$('#scrool-to-bottom').on('click', function () {
+			const scrollY = $content.find('section.selected').outerHeight();
+			$content.animate({scrollTop: scrollY}, 200);
+		});
 	});
 })();
