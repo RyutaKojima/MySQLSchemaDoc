@@ -204,6 +204,10 @@ table tbody tr:hover {
 
 /*--------------------------------------------------------------------------------*/
 
+.my-table-spec, .my-table-detail {
+	margin-bottom: 0.5rem;
+}
+
 .each_table_structure {
 	margin: 4px 0;
 }

@@ -14,7 +14,7 @@
 			paging:       false,		// ページング機能 無効
 		},
 		forDetail: {
-			scrollY: "580px",			// 縦スクロールバーを有効にする (scrollYは200, "200px"など「最大の高さ」を指定します)
+			// scrollY: "580px",			// 縦スクロールバーを有効にする (scrollYは200, "200px"など「最大の高さ」を指定します)
 			// 列設定
 			columnDefs: [
 				{targets: "cell_no",      width: 30},
