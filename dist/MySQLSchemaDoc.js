@@ -147,6 +147,9 @@
 	 */
 	$(function(){
 		const $content = $('#content');
+		const $visibleInfoElement = $("#visible-info");
+		const $visibleTableElement = $("#visible-table");
+		const $visibleIndexElement = $("#visible-index");
 
 		// DataTablesのデフォルト設定を変更
 		$.extend( $.fn.dataTable.defaults, optionsDataTable.forDefault);
@@ -204,6 +207,10 @@
 			}
 		});
 
+		$visibleInfoElement.button();
+		$visibleTableElement.button();
+		$visibleIndexElement.button();
+
 		$('div.split-pane').splitPane();
 
 		$('#all_item_count').text( $('.nav_link').length );
@@ -220,5 +227,15 @@
 			const scrollY = $content.find('section.selected').outerHeight();
 			$content.animate({scrollTop: scrollY}, 200);
 		});
+
+		const calleeVisibleChange = function () {
+			$('.my-table-spec').toggle($visibleInfoElement.prop('checked'));
+			$('.my-table-detail').toggle($visibleTableElement.prop('checked'));
+			$('.my-table-keys').toggle($visibleIndexElement.prop('checked'));
+		};
+
+		$visibleInfoElement.on('change', calleeVisibleChange);
+		$visibleTableElement.on('change', calleeVisibleChange);
+		$visibleIndexElement.on('change', calleeVisibleChange);
 	});
 })();

@@ -21,6 +21,15 @@
                 <div id="floatingMenu">
                     <ul>
                         <li>
+                            <input type="checkbox" id="visible-info" checked="checked" /><label for="visible-info">info</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" id="visible-table" checked="checked" /><label for="visible-table">table</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" id="visible-index" checked="checked" /><label for="visible-index">index</label>
+                        </li>
+                        <li>
                             <button id="scrool-to-top">↑</button>
                             <button id="scrool-to-bottom">↓</button>
                         </li>
