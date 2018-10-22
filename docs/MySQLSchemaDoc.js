@@ -14,7 +14,7 @@
 			paging:       false,		// ページング機能 無効
 		},
 		forDetail: {
-			scrollY: "580px",			// 縦スクロールバーを有効にする (scrollYは200, "200px"など「最大の高さ」を指定します)
+			// scrollY: "580px",			// 縦スクロールバーを有効にする (scrollYは200, "200px"など「最大の高さ」を指定します)
 			// 列設定
 			columnDefs: [
 				{targets: "cell_no",      width: 30},
@@ -146,6 +146,11 @@
 	 * jQuery ready
 	 */
 	$(function(){
+		const $content = $('#content');
+		const $visibleInfoElement = $("#visible-info");
+		const $visibleTableElement = $("#visible-table");
+		const $visibleIndexElement = $("#visible-index");
+
 		// DataTablesのデフォルト設定を変更
 		$.extend( $.fn.dataTable.defaults, optionsDataTable.forDefault);
 
@@ -161,6 +166,9 @@
 
 			$('.selected').removeClass('selected');
 			$(this).addClass('selected');
+			$section.addClass('selected');
+
+			$content.scrollTop(0);
 		});
 
 		$(document).on('click', '#filter_clear', function(){
@@ -199,6 +207,10 @@
 			}
 		});
 
+		$visibleInfoElement.button();
+		$visibleTableElement.button();
+		$visibleIndexElement.button();
+
 		$('div.split-pane').splitPane();
 
 		$('#all_item_count').text( $('.nav_link').length );
@@ -206,5 +218,24 @@
 		// chrome, firefoxの再起動、firefoxのリロード時などフォーム情報が残った状態でページが開く状況でも
 		// 正常動作させるために、トリガー起動
 		$('#filter_table_name').trigger('keydown');
+
+		$('#scrool-to-top').on('click', function () {
+			$content.animate({scrollTop: 0}, 200);
+		});
+
+		$('#scrool-to-bottom').on('click', function () {
+			const scrollY = $content.find('section.selected').outerHeight();
+			$content.animate({scrollTop: scrollY}, 200);
+		});
+
+		const calleeVisibleChange = function () {
+			$('.my-table-spec').toggle($visibleInfoElement.prop('checked'));
+			$('.my-table-detail').toggle($visibleTableElement.prop('checked'));
+			$('.my-table-keys').toggle($visibleIndexElement.prop('checked'));
+		};
+
+		$visibleInfoElement.on('change', calleeVisibleChange);
+		$visibleTableElement.on('change', calleeVisibleChange);
+		$visibleIndexElement.on('change', calleeVisibleChange);
 	});
 })();
